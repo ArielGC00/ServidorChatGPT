@@ -1,0 +1,16 @@
+Antes de correr el codigo asegurarse que la base de datos permita hacer las consultas
+
+si aparece este error: {"code":"ER_NOT_SUPPORTED_AUTH_MODE","errno":1251,"sqlMessage":"Client does not support authentication protocol requested by server; consider upgrading MySQL client","sqlState":"08004","fatal":true}
+realizar estos pasos en MySQL
+    1.Ejecutar el siguiente comando SQL para verificar el modo de autenticación actual: SELECT @@default_authentication_plugin;
+
+    2.Si el resultado muestra 'caching_sha2_password', cambia el modo de autenticación a 'mysql_native_password' ejecutando el siguiente comando SQL:
+
+    3.ALTER USER 'usuario'@'localhost' IDENTIFIED WITH mysql_native_password BY 'contraseña';
+
+    4.Reemplaza "usuario" y "contraseña" con sus propias credenciales de MySQL.
+
+    5.Verifica que el modo de autenticación se ha cambiado correctamente ejecutando el siguiente comando SQL:SELECT @@default_authentication_plugin;
+
+Si despues de esto aparece este error: {"code":"PROTOCOL_ENQUEUE_AFTER_FATAL_ERROR","fatal":false}
+Reiniciar la conexion en la terminal
